@@ -1,0 +1,17 @@
+# Base de datos MySQL para desarrollo local.
+# Iniciar:  docker compose up -d      Detener:  docker compose down
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: petsalud-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-petsalud123}
+      MYSQL_DATABASE: petsalud_db
+      TZ: America/Santiago
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - petsalud-data:/var/lib/mysql
+
+volumes:
+  petsalud-data:
